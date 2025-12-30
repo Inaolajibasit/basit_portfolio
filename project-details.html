@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="project-data.js"></script>
+</head>
+<body>
+
+    <section id="navigation">
+        <div class="nav-icon" onclick="window.location.href='index.html#projects'">
+            <span style="font-size:3rem; color:white;">&larr;</span>
+        </div>
+    </section>
+
+    <section id="project-hero">
+        <div class="container">
+            <h1 class="project-page-title" id="p-title">Loading...</h1> 
+            <p class="project-page-subtitle" id="p-subtitle"></p>
+            
+            <div class="project-banner-img">
+                <img id="p-img" src="" alt="Project Cover">
+            </div>
+
+            <div class="project-info-grid">
+                <div class="info-left">
+                    <h3>Project Overview</h3>
+                    <p id="p-desc"></p>
+                </div>
+
+                <div class="info-right">
+                    <div class="info-card">
+                        <h3>Tech Stack</h3>
+                        <ul class="tech-list" id="p-tech">
+                            </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Links</h3>
+                        <div class="project-links">
+                            <a id="p-live" href="#" target="_blank" class="primary-btn">Live Preview</a>
+                            <a id="p-repo" href="#" target="_blank" class="primary-btn outline">GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 1. Get the Project ID from the URL (e.g., ?id=harlink)
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+
+        // 2. Find the data in our JS file
+        const project = projectsData[projectId];
+
+        // 3. Populate the HTML elements
+        if (project) {
+            document.getElementById('p-title').innerText = project.title;
+            document.getElementById('p-subtitle').innerText = project.subtitle;
+            document.getElementById('p-desc').innerText = project.description;
+            document.getElementById('p-img').src = project.img;
+            document.getElementById('p-live').href = project.liveLink;
+            document.getElementById('p-repo').href = project.githubLink;
+
+            // Populate Tech Stack List
+            const techList = document.getElementById('p-tech');
+            project.techStack.forEach(tech => {
+                const li = document.createElement('li');
+                li.innerText = tech;
+                techList.appendChild(li);
+            });
+        } else {
+            document.querySelector('.container').innerHTML = "<h1>Project not found</h1>";
+        }
+    </script>
+</body>
+</html>
