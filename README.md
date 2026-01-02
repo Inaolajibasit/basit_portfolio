@@ -1,5 +1,5 @@
 # basit_portfolio
-live link:
-git hub repo: 
-name 
-Matric Number :
+live link:https://inaolajibasit.netlify.app/
+git hub repo: https://github.com/Inaolajibasit/basit_portfolio
+name : inaolaji Basit 
+Matric Number : 22120612998    
